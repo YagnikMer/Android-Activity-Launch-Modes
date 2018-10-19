@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class A_Activity extends AppCompatActivity implements View.OnClickListener {
 
     Button btn1, btn2, btn3, btn4;
+    TextView tvInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +20,7 @@ public class A_Activity extends AppCompatActivity implements View.OnClickListene
     }
 
     public void initilize() {
+        tvInfo = (TextView) findViewById(R.id.tvinfo);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
@@ -32,17 +35,23 @@ public class A_Activity extends AppCompatActivity implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn1:
-                startActivity(new Intent(this,A_Activity.class));
+                startActivity(new Intent(this, A_Activity.class));
                 break;
             case R.id.btn2:
-                startActivity(new Intent(this,B_Activity.class));
+                startActivity(new Intent(this, B_Activity.class));
                 break;
             case R.id.btn3:
-                startActivity(new Intent(this,C_Activity.class));
+                startActivity(new Intent(this, C_Activity.class));
                 break;
             case R.id.btn4:
-                startActivity(new Intent(this,D_Activity.class));
+                startActivity(new Intent(this, D_Activity.class));
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tvInfo.setText(Utils.getTaskInfo(this));
     }
 }
